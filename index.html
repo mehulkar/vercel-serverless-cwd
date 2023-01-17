@@ -8,11 +8,13 @@
 </head>
 <body>
     <p>
-        CWD in serverless fn is: <span id="result"></span>
+        <li>CWD: <span id="cwd"></span></li>
+        <li>Task Root: <span id="task-root"></span></li>
     </p>
     <script>
-        fetch('/api/cwd').then(res => res.text()).then((data) => {
-            document.getElementById('result').innerText = data;
+        fetch('/api/cwd').then(res => res.json()).then(({taskRoot, cwd}) => {
+            document.getElementById('cwd').innerText = cwd;
+            document.getElementById('task-root').innerText = taskRoot;
         })
     </script>
 </body>
